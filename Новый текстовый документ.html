@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шпаргалки | Главная</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.02);
+            padding: 2rem 2.5rem;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e2b4f, #2d3f6e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h1::before {
+            content: "📚";
+            font-size: 2.2rem;
+            -webkit-text-fill-color: initial;
+            background: none;
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 2.5rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.25rem;
+        }
+
+        .cheat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.75rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .cheat-card {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 1.5rem;
+            padding: 2rem 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.75rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .cheat-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.2);
+            background: #fafdff;
+        }
+
+        .card-icon {
+            font-size: 2.8rem;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #64748b;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.75rem;
+            font-weight: 500;
+            color: #3b82f6;
+            text-decoration: none;
+            padding: 0.5rem 1rem 0.5rem 0.75rem;
+            background: #eff6ff;
+            border-radius: 2rem;
+            transition: background 0.2s, color 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .back-link::before {
+            content: "←";
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.9rem;
+        }
+
+        .cheat-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .cheat-block {
+            background: #f8fafc;
+            border-radius: 1.25rem;
+            padding: 1.5rem 1.8rem;
+            border-left: 6px solid #3b82f6;
+        }
+
+        .cheat-block h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cheat-block h2 i {
+            font-style: normal;
+            font-size: 1.5rem;
+        }
+
+        .cheat-block p, .cheat-block ul {
+            color: #334155;
+            font-size: 1rem;
+        }
+
+        .cheat-block ul {
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .cheat-block li {
+            margin-bottom: 0.4rem;
+        }
+
+        code {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.5rem;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            word-break: break-word;
+        }
+
+        pre {
+            background: #0f172a;
+            color: #f1f5f9;
+            padding: 1rem 1.25rem;
+            border-radius: 1rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0 0.5rem;
+            border: 1px solid #1e293b;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            margin-left: 0.75rem;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 0.75rem; }
+            .container { padding: 1.5rem 1.25rem; border-radius: 1.5rem; }
+            h1 { font-size: 1.9rem; }
+            .cheat-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .page-title { font-size: 1.6rem; }
+            .cheat-block { padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="app">
+        <!-- Главная -->
+        <div id="home-page">
+            <h1>Шпаргалки</h1>
+            <div class="subhead">Только конкретика: команды, синтаксис, примеры</div>
+
+            <div class="cheat-grid">
+                <a href="#html" class="cheat-card" data-page="html">
+                    <span class="card-icon">📄</span>
+                    <span class="card-title">HTML</span>
+                    <span class="card-desc">Теги, структура, формы</span>
+                </a>
+                <a href="#git" class="cheat-card" data-page="git">
+                    <span class="card-icon">🔧</span>
+                    <span class="card-title">Git</span>
+                    <span class="card-desc">Команды, ветки, коммиты</span>
+                </a>
+                <a href="#github" class="cheat-card" data-page="github">
+                    <span class="card-icon">🐙</span>
+                    <span class="card-title">GitHub</span>
+                    <span class="card-desc">Репозитории, PR, Actions</span>
+                </a>
+                <a href="#prompts" class="cheat-card" data-page="prompts">
+                    <span class="card-icon">🤖</span>
+                    <span class="card-title">Промты</span>
+                    <span class="card-desc">Структура и техники</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- HTML -->
+        <div id="html-page" style="display: none;">
+            <a href="#" class="back-link" data-page="home">На главную</a>
+            <div class="page-title">📄 HTML <span class="badge">шпаргалка</span></div>
+            <div class="cheat-content">
+                <div class="cheat-block">
+                    <h2><i>🧱</i> Каркас документа</h2>
+                    <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Заголовок страницы&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Заголовок&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>🏷️</i> Основные теги</h2>
+                    <ul>
+                        <li><code>&lt;h1&gt;...&lt;h6&gt;</code> — заголовки (h1 — главный)</li>
+                        <li><code>&lt;p&gt;</code> — абзац</li>
+                        <li><code>&lt;a href="url"&gt;текст&lt;/a&gt;</code> — ссылка</li>
+                        <li><code>&lt;img src="путь" alt="описание"&gt;</code> — изображение</li>
+                        <li><code>&lt;ul&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;</code> — маркированный список</li>
+                        <li><code>&lt;ol&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ol&gt;</code> — нумерованный список</li>
+                        <li><code>&lt;div&gt;</code> — блочный контейнер</li>
+                        <li><code>&lt;span&gt;</code> — строчный контейнер</li>
+                        <li><code>&lt;br&gt;</code> — перенос строки</li>
+                        <li><code>&lt;hr&gt;</code> — горизонтальная линия</li>
+                    </ul>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>📋</i> Семантические теги</h2>
+                    <ul>
+                        <li><code>&lt;header&gt;</code> — шапка</li>
+                        <li><code>&lt;nav&gt;</code> — навигация</li>
+                        <li><code>&lt;main&gt;</code> — основное содержимое</li>
+                        <li><code>&lt;section&gt;</code> — смысловой раздел</li>
+                        <li><code>&lt;article&gt;</code> — самостоятельная статья</li>
+                        <li><code>&lt;aside&gt;</code> — боковая панель</li>
+                        <li><code>&lt;footer&gt;</code> — подвал</li>
+                    </ul>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>📝</i> Формы и поля ввода</h2>
+                    <pre>&lt;form action="/submit" method="post"&gt;
+  &lt;input type="text" name="name" placeholder="Имя"&gt;
+  &lt;input type="email" name="email" required&gt;
+  &lt;input type="password" name="pass"&gt;
+  &lt;input type="checkbox" name="agree"&gt;
+  &lt;input type="radio" name="gender" value="m"&gt;
+  &lt;textarea name="msg" rows="4"&gt;&lt;/textarea&gt;
+  &lt;select name="city"&gt;
+    &lt;option value="msk"&gt;Москва&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;button type="submit"&gt;Отправить&lt;/button&gt;
+&lt;/form&gt;</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>📊</i> Таблицы</h2>
+                    <pre>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;Имя&lt;/th&gt;&lt;th&gt;Возраст&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Анна&lt;/td&gt;&lt;td&gt;25&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>🔗</i> Атрибуты ссылок и медиа</h2>
+                    <ul>
+                        <li><code>target="_blank"</code> — открыть в новой вкладке</li>
+                        <li><code>rel="noopener"</code> — безопасность для target="_blank"</li>
+                        <li><code>alt="..."</code> — текст, если картинка не загрузилась</li>
+                        <li><code>width</code>, <code>height</code> — размеры изображения</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Git -->
+        <div id="git-page" style="display: none;">
+            <a href="#" class="back-link" data-page="home">На главную</a>
+            <div class="page-title">🔧 Git <span class="badge">шпаргалка</span></div>
+            <div class="cheat-content">
+                <div class="cheat-block">
+                    <h2><i>⚙️</i> Первичная настройка</h2>
+                    <pre>git config --global user.name "Ваше Имя"
+git config --global user.email "email@example.com"
+git config --global init.defaultBranch main</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>📦</i> Создание и клонирование</h2>
+                    <ul>
+                        <li><code>git init</code> — инициализировать репозиторий в текущей папке</li>
+                        <li><code>git clone &lt;url&gt;</code> — склонировать удалённый репозиторий</li>
+                        <li><code>git clone &lt;url&gt; &lt;папка&gt;</code> — клонировать в указанную папку</li>
+                    </ul>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>📸</i> Базовый рабочий цикл</h2>
+                    <pre>git status                  # состояние файлов
+git add &lt;файл&gt;              # добавить конкретный файл
+git add .                   # добавить все изменения
+git commit -m "сообщение"   # зафиксировать изменения
+git log --oneline           # история коммитов кратко
+git diff                    # изменения до индексации</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>🌿</i> Ветки</h2>
+                    <ul>
+                        <li><code>git branch</code> — список локальных веток</li>
+                        <li><code>git branch &lt;имя&gt;</code> — создать ветку</li>
+                        <li><code>git checkout &lt;ветка&gt;</code> — переключиться на ветку</li>
+                        <li><code>git checkout -b &lt;ветка&gt;</code> — создать и сразу переключиться</li>
+                        <li><code>git switch &lt;ветка&gt;</code> — современный аналог checkout</li>
+                        <li><code>git merge &lt;ветка&gt;</code> — слить ветку в текущую</li>
+                        <li><code>git branch -d &lt;ветка&gt;</code> — удалить ветку</li>
+                    </ul>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>🌐</i> Удалённые репозитории</h2>
+                    <pre>git remote add origin &lt;url&gt;   # привязать удалённый репозиторий
+git remote -v                  # список удалённых репозиториев
+git push -u origin main        # первый пуш с привязкой
+git push                       # отправить изменения
+git pull                       # забрать изменения</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>⏪</i> Отмена и восстановление</h2>
+                    <pre>git restore &lt;файл&gt;              # отменить изменения в файле
+git restore --staged &lt;файл&gt;     # убрать из индекса
+git reset --soft HEAD~1         # отменить коммит, сохранив изменения
+git reset --hard HEAD~1         # удалить коммит и изменения
+git revert &lt;хэш&gt;                # создать обратный коммит</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>📥</i> Временное сохранение (stash)</h2>
+                    <pre>git stash          # спрятать изменения
+git stash list     # список stash
+git stash pop      # вернуть последние изменения
+git stash drop     # удалить последний stash</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub -->
+        <div id="github-page" style="display: none;">
+            <a href="#" class="back-link" data-page="home">На главную</a>
+            <div class="page-title">🐙 GitHub <span class="badge">шпаргалка</span></div>
+            <div class="cheat-content">
+                <div class="cheat-block">
+                    <h2><i>🚀</i> Публикация локального репозитория</h2>
+                    <pre>git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/user/repo.git
+git push -u origin main</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>🔀</i> Пул-реквест (PR)</h2>
+                    <pre># 1. Создать ветку под задачу
+git checkout -b feature/new-button
+
+# 2. Внести изменения и закоммитить
+git add .
+git commit -m "add new button"
+
+# 3. Запушить ветку
+git push -u origin feature/new-button
+
+# 4. На GitHub: Compare & pull request → Create pull request</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>🔄</i> Синхронизация с форком</h2>
+                    <pre>git remote add upstream https://github.com/original/repo.git
+git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>⚡</i> GitHub Actions — базовый workflow</h2>
+                    <pre># .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>📝</i> Markdown на GitHub</h2>
+                    <pre># Заголовок 1
+## Заголовок 2
+
+**жирный**  *курсив*  ~~зачёркнутый~~
+
+- список
+- список
+
+1. нумерованный
+2. список
+
+[ссылка](https://example.com)
+![alt](image.png)
+
+`код` и блок:
+```js
+console.log('hi')
+```</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Промты -->
+        <div id="prompts-page" style="display: none;">
+            <a href="#" class="back-link" data-page="home">На главную</a>
+            <div class="page-title">🤖 Промты <span class="badge">шпаргалка</span></div>
+            <div class="cheat-content">
+                <div class="cheat-block">
+                    <h2><i>🎯</i> Формула промта</h2>
+                    <pre>Роль + Задача + Контекст + Формат + Ограничения
+
+Роль:       "Ты — senior Python-разработчик"
+Задача:     "Напиши функцию парсинга JSON"
+Контекст:   "На входе список словарей с полями id, name"
+Формат:     "Ответь кодом с комментариями"
+Ограничения:"Только стандартная библиотека"</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>🧠</i> Техники</h2>
+                    <ul>
+                        <li><strong>Zero-shot</strong> — прямой запрос без примеров</li>
+                        <li><strong>Few-shot</strong> — дать 2–3 примера перед задачей</li>
+                        <li><strong>Chain-of-thought</strong> — добавить «Решай пошагово»</li>
+                        <li><strong>Ролевой</strong> — «Представь, что ты…»</li>
+                        <li><strong>Self-consistency</strong> — «Дай 3 варианта ответа»</li>
+                        <li><strong>Рефлексия</strong> — «Проверь свой ответ и исправь ошибки»</li>
+                    </ul>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>💻</i> Промт для кода</h2>
+                    <pre>Роль: Ты — опытный Go-разработчик.
+Задача: Напиши HTTP-сервер с одним эндпоинтом /health.
+Контекст: Go 1.22, без внешних библиотек.
+Формат: Один файл main.go с комментариями.
+Ограничения: Порт 8080, ответ JSON {"status":"ok"}.</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>✍️</i> Промт для текста</h2>
+                    <pre>Роль: Ты — редактор деловой переписки.
+Задача: Перепиши письмо в официально-деловом стиле.
+Контекст: Письмо партнёру о переносе встречи.
+Формат: 3–5 предложений, без воды.
+Ограничения: Обращение на «Вы», без канцеляризмов.</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>📊</i> Промт для анализа</h2>
+                    <pre>Роль: Ты — data-аналитик.
+Задача: Найди аномалии в таблице продаж.
+Контекст: CSV с колонками date, product, qty, price.
+Формат: Список аномалий с пояснением.
+Ограничения: Учитывай сезонность и выбросы > 3σ.</pre>
+                </div>
+                <div class="cheat-block">
+                    <h2><i>🔁</i> Уточняющие фразы</h2>
+                    <ul>
+                        <li>«Объясни проще, как для новичка»</li>
+                        <li>«Приведи конкретный пример»</li>
+                        <li>«Сократи до 5 пунктов»</li>
+                        <li>«Покажи альтернативный подход»</li>
+                        <li>«Разбей на шаги»</li>
+                        <li>«Укажи источники или документацию»</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const pages = {
+                home: document.getElementById('home-page'),
+                html: document.getElementById('html-page'),
+                git: document.getElementById('git-page'),
+                github: document.getElementById('github-page'),
+                prompts: document.getElementById('prompts-page')
+            };
+
+            function showPage(pageId) {
+                Object.values(pages).forEach(page => {
+                    if (page) page.style.display = 'none';
+                });
+                if (pages[pageId]) {
+                    pages[pageId].style.display = 'block';
+                } else {
+                    pages.home.style.display = 'block';
+                }
+                if (pageId === 'home') {
+                    history.pushState(null, '', window.location.pathname);
+                } else {
+                    history.pushState(null, '', '#' + pageId);
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            document.addEventListener('click', function(e) {
+                const link = e.target.closest('[data-page]');
+                if (!link) return;
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                if (pageId) showPage(pageId);
+            });
+
+            function handleHash() {
+                const hash = window.location.hash.substring(1);
+                if (hash && pages[hash]) {
+                    showPage(hash);
+                } else {
+                    showPage('home');
+                }
+            }
+
+            window.addEventListener('hashchange', handleHash);
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', handleHash);
+            } else {
+                handleHash();
+            }
+        })();
+    </script>
+</body>
+</html>
